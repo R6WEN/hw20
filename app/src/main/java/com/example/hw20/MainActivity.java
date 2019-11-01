@@ -14,6 +14,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,13 @@ ImageView imageView;
 
     }
     private class GetImage extends AsyncTask<String , Integer , Bitmap> {
+        ProgressDialogUtil progressDialogUtil;
         @Override
         protected void onPreExecute() {
             //執行前 設定可以在這邊設定
             super.onPreExecute();
+            progressDialogUtil = new ProgressDialogUtil();
+            progressDialogUtil.showProgressDialog(MainActivity.this);
         }
         @Override
         protected Bitmap doInBackground(String... params) {
@@ -55,6 +59,7 @@ ImageView imageView;
         protected void onPostExecute(Bitmap bitmap) {
             //執行後 完成背景任務
             super.onPostExecute(bitmap);
+            progressDialogUtil.dismiss();
             imageView.setImageBitmap(bitmap);
         }
     }
