@@ -36,7 +36,7 @@ ImageView imageView;
             //執行前 設定可以在這邊設定
             super.onPreExecute();
             progressDialogUtil = new ProgressDialogUtil();
-            progressDialogUtil.showProgressDialog(MainActivity.this);
+            progressDialogUtil.showProgressDialog(MainActivity.this,"等等喔~");
         }
         @Override
         protected Bitmap doInBackground(String... params) {
